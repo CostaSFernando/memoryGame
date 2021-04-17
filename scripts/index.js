@@ -33,6 +33,13 @@ let baseImages = [
             src: './imagens/mickey.jpeg',
             className: 'img'
         }
+    },
+    {
+        id: 6,
+        atributos: {
+            src: './imagens/unicornio.jpg',
+            className: 'img'
+        }
     }
 ];
 
