@@ -67,16 +67,6 @@ header {
     border-radius: 2px;
 }
 
-#main img {
-    width: 15%;
-    min-width: 150px;
-    height: 18%;
-    min-height: 150px;
-    margin: 3px;
-    box-shadow: 0 0 18px 0 #0000007a;
-    border-radius: 3px;
-}
-
 .text {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
