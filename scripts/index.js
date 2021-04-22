@@ -3,44 +3,65 @@ let baseImages = [
         id: 1,
         atributos: {
             src: './imagens/barata.jpg',
-            className: 'img'
+            className: 'cardImage'
         }
     },
     {
         id: 2,
         atributos: {
             src: './imagens/dog.jpg',
-            className: 'img'
+            className: 'cardImage'
         }
     }, 
     {
         id: 3,
         atributos: {
             src: './imagens/ovelha.jpg',
-            className: 'img'
+            className: 'cardImage'
         }
     }, 
     {
         id: 4,
         atributos: {
             src: './imagens/picapau.jpg',
-            className: 'img'
+            className: 'cardImage'
         }
     }, 
     {
         id: 5,
         atributos: {
             src: './imagens/mickey.jpeg',
-            className: 'img'
+            className: 'cardImage'
         }
     },
     {
         id: 6,
         atributos: {
             src: './imagens/unicornio.jpg',
-            className: 'img'
+            className: 'cardImage'
         }
-    }
+    },
+    {
+        id: 7,
+        atributos: {
+            src: './imagens/minie.png',
+            className: 'cardImage'
+        }
+    },
+    {
+        id: 8,
+        atributos: {
+            src: './imagens/bob.jpg',
+            className: 'cardImage'
+        }
+    },
+    {
+        id: 9,
+        atributos: {
+            src: './imagens/minion.jpg',
+            className: 'cardImage'
+        }
+    },
 ];
 
 const main = document.getElementById('main');
@@ -48,18 +69,13 @@ const body = document.getElementsByTagName('body')[0];
 const header = document.getElementsByTagName('header')[0];
 const menuInicial = document.getElementById('menu');
 
-let cardSelectId = {};
+let cardsSelected = [];
 
+let cardSelectId = {};
 
 const setCards = (arrImgs) => {
     arrImgs.forEach(img => {
-        main.append(createElementHtml(
-            'img',
-            {
-                className: 'img',
-                src: img.atributos.src
-            }
-        ));
+        main.append(createElementHtml('img', img.atributos));
     });
 }
 
@@ -107,6 +123,14 @@ const validGame = (arr) => {
     }
 }
 
+const finalizarJogo = () => {
+    removeAllChilds(main);
+    header.style.display = 'flex';
+    menuInicial.style.display = 'flex';
+    cardsSelected = [];
+    setCards(baseImages);
+}
+
 const playGame = (array) => {
     for (let i = 0; i < array.length; i++) {
         const element = array[i];
@@ -114,10 +138,11 @@ const playGame = (array) => {
             className: 'cardImage',
             id: i,
             onclick: (event) => {
-                if ( cardSelectId?.card1 && cardSelectId?.card2 ) {
+                const id = event.srcElement.id;
+                const objectCard = array[id];
+                if ( !objectCard || cardsSelected.includes(objectCard.id) || (cardSelectId?.card1 && cardSelectId?.card2) ) {
                     return;
                 }
-                const id = event.srcElement.id;
                 const img = createElementHtml('img', {
                     className: 'imageCard',
                     src: element.atributos.src
@@ -130,7 +155,6 @@ const playGame = (array) => {
                     cardSelectId.card2 = id;
                     block.append(img);
                     if ( !validGame(array) ) {
-                        alert('Tururu');
                         setTimeout( () => {
                             block.removeChild(img);
                             const card1Element = document.getElementById(cardSelectId.card1);
@@ -139,9 +163,12 @@ const playGame = (array) => {
                             cardSelectId.card2 = null;
                         }, 990);
                     } else {
-                        alert('Boaaa!');
                         cardSelectId.card1 = null;
                         cardSelectId.card2 = null;
+                        cardsSelected.push(objectCard.id)
+                        if ( cardsSelected.length === baseImages.length ) {
+                            finalizarJogo();
+                        }
                     }
                     
                 }
@@ -154,7 +181,7 @@ const playGame = (array) => {
 
 const initGame = () => {
     header.style.display = 'none'
-    menuInicial.style.display = 'none'
+    menuInicial.style.display = 'none';
     removeAllChilds(main);
     const newBaseArray = [...baseImages, ...baseImages];
     const cardsArray = shuffle(newBaseArray);
@@ -170,4 +197,4 @@ const initGame = () => {
 
 setCards(baseImages);
 
-document.getElementById('init--button').addEventListener('click', initGame)
+document.getElementById('init--button').addEventListener('click', initGame);

@@ -67,12 +67,12 @@ header {
     border-radius: 2px;
 }
 
-#main .img {
-    width: 20%;
-    min-width: 60px;
-    height: 20%;
-    min-height: 70px;
-    margin: 5px;
+#main img {
+    width: 15%;
+    min-width: 150px;
+    height: 18%;
+    min-height: 150px;
+    margin: 3px;
     box-shadow: 0 0 18px 0 #0000007a;
     border-radius: 3px;
 }
@@ -82,11 +82,13 @@ header {
 }
 
 .cardImage {
-    width: 20%;
-    height: 20%;
+    width: 15%;
+    height: 17%;
+    min-width: 150px;
+    min-height: 150px;
     box-sizing: border-box;
     padding: 1.5px;
-    margin: 5px;
+    margin: 1px 1px 2px 1px;
     box-shadow: 0 0 18px 0 #0000007a;
     border-radius: 3px;
 }
