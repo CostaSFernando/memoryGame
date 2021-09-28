@@ -127,6 +127,7 @@ const finalizarJogo = () => {
     removeAllChilds(main);
     header.style.display = 'flex';
     menuInicial.style.display = 'flex';
+    main.classList.remove ('main-game')
     cardsSelected = [];
     setCards(baseImages);
 }
@@ -182,6 +183,7 @@ const playGame = (array) => {
 const initGame = () => {
     header.style.display = 'none'
     menuInicial.style.display = 'none';
+    main.classList.add ('main-game')
     removeAllChilds(main);
     const newBaseArray = [...baseImages, ...baseImages];
     const cardsArray = shuffle(newBaseArray);
