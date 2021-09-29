@@ -68,6 +68,7 @@ const main = document.getElementById('main');
 const body = document.getElementsByTagName('body')[0];
 const header = document.getElementsByTagName('header')[0];
 const menuInicial = document.getElementById('menu');
+const footer = document.getElementsByTagName('footer')[0];
 
 let cardsSelected = [];
 
@@ -127,6 +128,7 @@ const finalizarJogo = () => {
     removeAllChilds(main);
     header.style.display = 'flex';
     menuInicial.style.display = 'flex';
+    footer.style.display = 'block';
     main.classList.remove ('main-game')
     cardsSelected = [];
     setCards(baseImages);
@@ -183,6 +185,7 @@ const playGame = (array) => {
 const initGame = () => {
     header.style.display = 'none'
     menuInicial.style.display = 'none';
+    footer.style.display = 'none';
     main.classList.add ('main-game')
     removeAllChilds(main);
     const newBaseArray = [...baseImages, ...baseImages];
